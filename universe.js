@@ -11,7 +11,7 @@ const showUniverseData = (tools) => {
         // console.log(tools)
     const universePhotoContainer = document.getElementById('universe-container')
     tools.forEach(tool => {
-        const {name,description,image,published_in,features} = tool
+        const {name,description,image,published_in,features,id} = tool
         console.log(tool)
         const div = document.createElement('div')
         div.classList.add('col')
@@ -31,7 +31,7 @@ const showUniverseData = (tools) => {
             </h2> <i class="fa-regular fa-calendar-days"></i> ${published_in}</h2>
             </div>
            
-            <i class="fa-solid fa-arrow-right"></i>
+            <i class="fa-solid fa-arrow-right"  data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fetchModalDetails('${id}')"></i>
            
             </div>
            
@@ -48,5 +48,60 @@ const showUniverseData = (tools) => {
     });
 
 }
+// this is for modal details 
+
+const fetchModalDetails = (id) => {
+    const url = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => showModalDetails(data.data))
+
+
+}
+
+const showModalDetails = (id) => {
+    const modalContainer = document.getElementById('exampleModal')
+    console.log(id)
+   
+    const {tool_name,description,image_link} = id
+    const modalBody = document.getElementById('body-modal')
+    modalBody.innerHTML = `
+    <div class="d-flex gap-4"> 
+    
+    <div>
+    <h4 class="p-4"> ${description} </h4>
+     
+    <div class="d-flex justify-content-start"> 
+   
+    <h5 class="p-4"> ${id.pricing[0].plan} </br> ${id.pricing[0].price} </h5>
+    
+    <h5 class="p-4"> ${id.pricing[1].plan} </br> ${id.pricing[1].price} </h5>
+    
+    <h5 class="p-4"> ${id.pricing[2].plan} </h5>
+    
+    </div>
+    
+    
+    </div>
+   
+   
+   
+   
+   
+    <div>  
+    <img src="${image_link[0]}" class="card-img-top img-fluid p-4" alt=".">
+    
+    
+    </div>
+
+    
+    
+    
+    </div>
+
+    `
+
+}
+
 
 loadUniverseData()
