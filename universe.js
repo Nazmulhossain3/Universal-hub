@@ -63,7 +63,7 @@ const showModalDetails = (id) => {
     const modalContainer = document.getElementById('exampleModal')
     console.log(id)
    
-    const {tool_name,description,image_link} = id
+    const {tool_name,description,image_link,features,feature_name} = id
     const modalBody = document.getElementById('body-modal')
     modalBody.innerHTML = `
     <div class="d-flex gap-4"> 
@@ -73,33 +73,67 @@ const showModalDetails = (id) => {
      
     <div class="d-flex justify-content-start"> 
    
-    <h5 class="p-4"> ${id.pricing[0].plan} </br> ${id.pricing[0].price} </h5>
+    <h5 class="p-4 text-success"> ${id.pricing[0].plan} </br> ${id.pricing[0].price} </h5>
     
-    <h5 class="p-4"> ${id.pricing[1].plan} </br> ${id.pricing[1].price} </h5>
+    <h5 class="p-4 text-warning"> ${id.pricing[1].plan} </br> ${id.pricing[1].price} </h5>
     
-    <h5 class="p-4"> ${id.pricing[2].plan} </h5>
-    
-    </div>
-    
+    <h5 class="p-4 text-danger"> ${id.pricing[2].plan} </h5>
     
     </div>
+    
+     <div>  
+    
+    </div>
+
+   
+</div>
    
    
-   
-   
-   
-    <div>  
+ <div>  
     <img src="${image_link[0]}" class="card-img-top img-fluid p-4" alt=".">
-    
-    
-    </div>
+    <p class="accuracy-position"> Accuracy ${id.accuracy.score} %</P>
+   </div>
 
-    
-    
-    
-    </div>
+</div>
 
-    `
+
+<div class="d-flex justify-content-between gap-5">  
+
+<div class="d-flex gap-5 p-5"> 
+
+<div> 
+<h3 class="text-center fw-bold"> Features</h3>
+<h6 class="mt-2">1.${id.features[1].feature_name}</h6>
+<h6>2.${id.features[2].feature_name}</h6>
+<h6>3.${id.features[3].feature_name}</h6>
+</div>
+
+<div> 
+<h3 class="text-center fw-bold"> Integration</h3>
+<h6 class="mt-2">${id.integrations[0]}</h6>
+<h6 class="mt-2">${id.integrations[1]}</h6>
+<h6 class="mt-2">${id.integrations[2]}</h6>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="text-center p-5">
+<h5>${id.input_output_examples[0].input} </h5>
+<h5>${id.input_output_examples[1].input} </h5>
+</div>
+
+</div>
+
+
+`
+
 
 }
 
