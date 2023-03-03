@@ -16,8 +16,7 @@ const showUniverseData = (tools) => {
 
     universePhotoContainer.innerHTML = '';
 
-    
-    tools.forEach(tool => {
+     tools.forEach(tool => {
         const {name,description,image,published_in,features,id} = tool
         console.log(tool)
         const div = document.createElement('div')
@@ -52,9 +51,13 @@ const showUniverseData = (tools) => {
         
         `
         universePhotoContainer.appendChild(div)
+        toggleSpinner(false)
     });
 
-}
+    }
+
+
+
 // this is for modal details 
 
 const fetchModalDetails = (id) => {
@@ -146,8 +149,14 @@ const showModalDetails = (id) => {
 
 }
 
+
+
+
+
+
 // btn show all
 const btnShowAll = () => {
+    toggleSpinner(true)
     const url = 'https://openapi.programming-hero.com/api/ai/tools'
     fetch(url)
     .then(res => res.json())
@@ -156,5 +165,20 @@ const btnShowAll = () => {
     
     }
 
+    
+const toggleSpinner = isLoading => {
+
+    const loaderSection = document.getElementById('loader')
+
+    if(isLoading){
+        loaderSection.classList.remove('d-none')
+    }
+    else{
+        loaderSection.classList.add('d-none');
+    }
+}
+
+
+    
 
 loadUniverseData()
