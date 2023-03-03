@@ -91,7 +91,7 @@ const showModalDetails = (id) => {
    
  <div>  
     <img src="${image_link[0]}" class="card-img-top img-fluid p-4" alt=".">
-    <p class="accuracy-position"> Accuracy ${id.accuracy.score} %</P>
+    <p class="accuracy-position"> Accuracy ${id.accuracy.score ?id.accuracy.score :""} %</P>
    </div>
 
 </div>
