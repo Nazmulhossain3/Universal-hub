@@ -72,7 +72,7 @@ const fetchModalDetails = (id) => {
 const showModalDetails = (id) => {
     const modalContainer = document.getElementById('exampleModal')
     console.log(id)
-   
+
     const {tool_name,description,image_link,features,feature_name} = id
     const modalBody = document.getElementById('body-modal')
     modalBody.innerHTML = `
@@ -102,8 +102,10 @@ const showModalDetails = (id) => {
    
  <div>  
     <img src="${image_link[0]}" class="card-img-top img-fluid p-4" alt=".">
-    <p class="accuracy-position"> Accuracy ${id.accuracy.score ?id.accuracy.score :""} %</P>
-   </div>
+    <p class="accuracy-position"> ${id.accuracy.score ? id.accuracy.score : ""} 
+    </P>
+    
+ </div>
 
 </div>
 
@@ -177,8 +179,5 @@ const toggleSpinner = isLoading => {
         loaderSection.classList.add('d-none');
     }
 }
-
-
-    
 
 loadUniverseData()
