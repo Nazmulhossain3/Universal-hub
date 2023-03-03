@@ -2,14 +2,21 @@ const loadUniverseData = () => {
     const url = 'https://openapi.programming-hero.com/api/ai/tools'
     fetch(url)
     .then(res => res.json())
-    .then(data => showUniverseData(data.data.tools))
+    .then(data => showUniverseData(data.data.tools.slice(0,6)))
 
 
 }
 
 const showUniverseData = (tools) => {
+
         // console.log(tools)
+
+
     const universePhotoContainer = document.getElementById('universe-container')
+
+    universePhotoContainer.innerHTML = '';
+
+    
     tools.forEach(tool => {
         const {name,description,image,published_in,features,id} = tool
         console.log(tool)
@@ -73,7 +80,8 @@ const showModalDetails = (id) => {
      
     <div class="d-flex justify-content-start"> 
    
-    <h5 class="p-4 text-success"> ${id.pricing[0].plan} </br> ${id.pricing[0].price} </h5>
+    <h5 class="p-4 text-success"> ${id.pricing[0].plan ? id.pricing[0].plan : ""} </br> ${id.pricing[0].price ? id.pricing[0].price : "Free of Cost"}  </h5>
+    
     
     <h5 class="p-4 text-warning"> ${id.pricing[1].plan} </br> ${id.pricing[1].price} </h5>
     
@@ -99,11 +107,11 @@ const showModalDetails = (id) => {
 
 <div class="d-flex justify-content-between gap-5">  
 
-<div class="d-flex gap-5 p-5"> 
+<div class="d-flex gap-5 mr-4"> 
 
 <div> 
 <h3 class="text-center fw-bold"> Features</h3>
-<h6 class="mt-2">1.${id.features[1].feature_name}</h6>
+<h6 class="">1.${id.features[1].feature_name}</h6>
 <h6>2.${id.features[2].feature_name}</h6>
 <h6>3.${id.features[3].feature_name}</h6>
 </div>
@@ -125,9 +133,9 @@ const showModalDetails = (id) => {
 
 
 
-<div class="text-center p-5">
-<h5>${id.input_output_examples[0].input} </h5>
-<h5>${id.input_output_examples[1].input} </h5>
+<div class="text-center">
+<h5>${id.input_output_examples[1].input} ? </h5>
+<h5>${id.input_output_examples[1].output ? id.input_output_examples[1].output.slice(0,120) : "No! Not Yet Take a Break!!!"} </h5>
 </div>
 
 </div>
@@ -137,6 +145,16 @@ const showModalDetails = (id) => {
 
 
 }
+
+// btn show all
+const btnShowAll = () => {
+    const url = 'https://openapi.programming-hero.com/api/ai/tools'
+    fetch(url)
+    .then(res => res.json())
+    .then(data => showUniverseData(data.data.tools))
+
+    
+    }
 
 
 loadUniverseData()
