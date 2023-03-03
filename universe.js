@@ -110,9 +110,10 @@ const showModalDetails = (id) => {
 
 <div> 
 <h3 class="text-center fw-bold"> Integration</h3>
-<h6 class="mt-2">${id.integrations[0]}</h6>
-<h6 class="mt-2">${id.integrations[1]}</h6>
-<h6 class="mt-2">${id.integrations[2]}</h6>
+<h6 class="mt-2">${id.integrations[0] ? id.integrations[0] : ""}</h6>
+<h6 class="mt-2">${id.integrations[1] ? id.integrations[1] : ""}</h6>
+<h6 class="mt-2">${id.integrations[2] ? id.integrations[2] : 'No Data Found'}</h6>
+
 
 
 </div>
