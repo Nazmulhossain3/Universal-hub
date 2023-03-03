@@ -26,9 +26,9 @@ const showUniverseData = (tools) => {
         <img src="${image}" class="card-img-top" alt="...">
         <div class="card-body">
           <h3 class="card-title fw-bold">Features</h3>
-          <p>1.${features[0]}</p>
-          <p>2.${features[1]}</p>
-          <p>3.${features[2]}</p>
+          <p>1.${features[0] ? features[0] : 'Not Available'}</p>
+          <p>2.${features[1] ? features[1] : 'Not Available'}</p>
+          <p>3.${features[2] ? features[2] : 'Not Available'}</p>
 
             <div class="d-flex justify-content-between">
             
